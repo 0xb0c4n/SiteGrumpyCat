@@ -1,0 +1,281 @@
+@font-face {
+    font-family: "Silver";
+    src: url("../fonts/Silver.ttf");
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0;}
+
+body {
+    font-family: "Silver";
+    color: #fff;
+    width: 100%;
+    height: 100%;
+    font-size: 25px;
+    background: linear-gradient(0deg,#0284c7,#8639b9);
+}
+
+header {
+    width: 100%;
+    background: #000;
+    z-index: 99;
+}
+
+header nav ul {
+    width: 100%;
+    display: flex;
+}
+
+header nav ul li {
+    padding: 15px;
+    list-style-type: none;
+    z-index: 999;
+
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    display: inline-block;
+    position: relative;
+}
+
+header nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #ffffff;
+    transform-origin: bottom right;
+    transition: transform .3s ease-out;
+}
+
+header nav ul li a:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+   }
+    100% {
+        transform: translateX(calc(-250px * 7));
+   }
+}
+.slider {
+    background: rgb(13, 13, 13);
+    box-shadow: 0 10px 20px -5px rgba(0, 0, 0, .125);
+    height: 50px;
+    margin: auto;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+.slider::before, .slider::after {
+    background: linear-gradient(to right, rgb(0, 0, 0) 0%, rgba(255, 255, 255, 0) 100%);
+    content: "";
+    height: 50px;
+    position: absolute;
+    width: 200px;
+    z-index: 2;
+}
+.slider::after {
+    right: 0;
+    top: 0;
+    transform: rotateZ(180deg);
+}
+.slider::before {
+    left: 0;
+    top: 0;
+}
+.slider .slide-track {
+    animation: scroll 40s linear infinite;
+    display: flex;
+    width: calc(250px * 14);
+}
+.slider .slide {
+    height: 50px;
+    width: 250px;
+    color: #fff;
+    padding-top: 15px;
+}
+
+.percentage.negative {
+    color: red;
+}
+.percentage.positive {
+    color: green;
+}
+
+.accueil {
+    position: fixed;
+    top: 0;
+    height: 100px;
+    z-index: 999;
+}
+
+.debut {
+    height: 600px;
+    width: 100%;
+    background: url("../images/background.jpg");
+}
+
+.atmosphere {
+    width: 100%;
+    height: 1056px;
+    background: url("../images/thermosphere.jpg");
+}
+
+article {
+    position: absolute;
+    top: 120px;
+    width: 100%;
+    text-align: center;
+    padding-top: 50px;
+    transition: .3s;
+
+    height: 800px;
+    z-index: 1;
+}
+
+a img {
+    width: 30px;
+    height: 30px;
+}
+.title {
+    display: inline-block;
+    position: relative;
+    padding: 0 30px;
+    height: 62px;
+    border: 2px solid white;
+    border-radius: 50px;
+    color: #00adb5;
+    transform: rotate(358deg);
+    -webkit-transform: rotate(358deg);
+    box-shadow: 5px 3px 0px 0px #00adb5;
+    -webkit-box-shadow: 5px 3px 0px 0px #00adb5;
+    font-size: 72px;
+    margin-bottom: 50px;
+}
+
+a.buy {
+    color: white;
+    text-decoration: none;
+    font-size: 48px;
+}
+
+#container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+.combination {
+    position: relative;
+    white-space: nowrap;
+    font-size: 2em;
+    display: block;
+    position: absolute;
+}
+
+.chapeau {
+    position: absolute;
+    top: 0;
+    z-index: 2;
+}
+
+.chat {
+    z-index: 1;
+    position: absolute;
+    top: 40px;
+    left: 8px;
+}
+
+.cloud {
+    position: absolute;
+    z-index: 6;
+    top: 100px;
+}
+
+#cat-with-a-hat {
+    background: none;
+    width: 100%;
+    position: absolute;
+    text-align: center;
+}
+
+.barometre {
+    width: 400px;
+    height: 350px;
+    position: absolute;
+    top: 1800px;
+    left: 50%;
+    transform: translate(-50%);
+    background-image: url("../images/test.png");
+    background-repeat: no-repeat;
+    background-size: 400px 270px;
+}
+
+.cadran {
+    width: 300px;
+    height: 300px;
+    padding: 8px;
+    border-radius: 50%;
+    position: absolute;
+    top:50px;
+    left: 50%;
+    transform: translate(-50%,0);
+    z-index: 5;
+
+}
+
+.cadran img {
+    border-radius: 50%;
+    width: 300px;
+    margin-left: -9px;
+    height: 300px;
+}
+
+.aiguille {
+    height: 200px;
+    width: 20px;
+    background-image: url("../images/aiguille.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    left: 45%;
+    top: 0;
+    transform-origin: bottom;
+    transform: translate(-50%) rotate(90deg);;
+    z-index: 99;
+}
+
+.sky {
+    position: absolute;
+    top: 1056px;
+    left: 0;
+    width: 100%;
+}
+
+#cat-with-a-hat img {
+    width: 100px;
+    height: 80px;
+}
+
+.tap {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ffd000;
+    height: 45px;
+    width: 250px;
+    font-size: 48px;
+    border-radius: 25px;
+    cursor: pointer;
+}
