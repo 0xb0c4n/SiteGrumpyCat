@@ -7,6 +7,17 @@
     <link rel="stylesheet" href="./assets/css/main.css">
 </head>
 <body>
+    <div class="alert">
+        <i class="fas fa-times close" id="close"></i>
+        <div class="images">
+            <img src="./assets/images/chapeaux/Chapeau2.png" alt="" class="chapeau" id="chapeau-modif">
+            <img src="./assets/images/cat-cl.png" alt="" class="chat">
+        </div>
+
+        <p id="p-chapeau">You won the Irish Hat</p>
+    </div>
+    <div class="overlay"></div>
+
     <div class="debut">
         <div class="accueil">
             <div class="slider">
@@ -25,7 +36,7 @@
                     <ul>
                         <li><a href="#">BUY WITH US</a></li>
                         <li><a href="#cat-with-a-hat">CAT WITH HAT</a></li>
-                        <li><a href="#">CHART WITH US</a></li>
+                        <li><a href="#barometre">BAROMETER</a></li>
                         <li><a href="#">TOKENOMICS</a></li>
                     </ul>
                 </nav>
@@ -48,20 +59,57 @@
 
     <div id="cat-with-a-hat">
         <h1>Cat with a hat</h1>
-        <img src="./assets/images/chest_idle.png" alt="" srcset="">
-        <p class="tap">Tap to get hat</p>
+        <img id="chest" src="./assets/images/chest_idle.png" alt="" srcset="">
+        <button class="tap" id="tap">Tap to get hat</button>
     </div>
-
     <div class="sky">
-        <div class="barometre">
-            <div class="cadran">
-                <img src="./assets/images/logo.gif" alt="" srcset="">
-                <div class="aiguille"></div>
-                <div class="aiguille-cercle"></div>
+        <div class="barometre" id="barometre">
+
+            <h1>Barometer</h1>
+            <div class="action">
+                <div class="list list1" >
+                    <h3>Advantages of the day</h3>
+                    <ul id="list1"></ul>
+                </div>
+                <div class="image">
+                    <div class="cadran">
+                        <img src="./assets/images/logo.gif" alt="" srcset="">
+                        <div class="aiguille" id="aiguille"></div>
+                        <div class="aiguille-cercle"></div>
+                    </div>
+                </div>
+                <div class="list list2" >
+                    <h3>Disadvantages of the day</h3>
+                    <ul id="list2"></ul>
+                </div>
             </div>
         </div>
     </div>
 
     <script src="./main.js"></script>
+    <script src="./config.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            try {
+                const response = fetch('http://localhost:3000/read-data')
+                                .then(response=>response.json())
+                                .then(data=>{ 
+                                    document.getElementById('aiguille').style.transform = 'rotate('+data[0]['ROTATION']+'deg)';
+                                    for (let i = 1; i <= 8; i++) {
+                                        let li = document.createElement('li')
+                                        li.innerHTML = '- ' + data[0]['ELEM' + i]
+                                        if(i <= 4) {
+                                            document.getElementById('list1').appendChild(li)
+                                        } else {
+                                            document.getElementById('list2').appendChild(li)
+                                        }
+                                    } 
+                                })
+            } catch (error) {
+                console.error('Fetch error:', error);
+                alert('Fetch error: ' + error.message);
+            }
+        })
+    </script>
 </body>
 </html>

@@ -11,7 +11,7 @@ body {
     width: 100%;
     height: 100%;
     font-size: 25px;
-    background: linear-gradient(0deg,#0284c7,#8639b9);
+    background: #8639b9;
 }
 
 header {
@@ -195,6 +195,8 @@ a.buy {
     position: absolute;
     top: 40px;
     left: 8px;
+    width: 80px;
+    height: 80px;
 }
 
 .cloud {
@@ -206,20 +208,35 @@ a.buy {
 #cat-with-a-hat {
     background: none;
     width: 100%;
-    position: absolute;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center space-between;
+}
+
+.sky {
+    position: relative;
 }
 
 .barometre {
+    text-align: center;
+}
+.action {
+    display: flex;
+    text-align: center;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.image {
     width: 400px;
     height: 350px;
-    position: absolute;
-    top: 1800px;
-    left: 50%;
-    transform: translate(-50%);
     background-image: url("../images/test.png");
     background-repeat: no-repeat;
     background-size: 400px 270px;
+    position: relative;
 }
 
 .cadran {
@@ -227,12 +244,11 @@ a.buy {
     height: 300px;
     padding: 8px;
     border-radius: 50%;
-    position: absolute;
-    top:50px;
-    left: 50%;
-    transform: translate(-50%,0);
     z-index: 5;
-
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translate(-50%);
 }
 
 .cadran img {
@@ -244,23 +260,16 @@ a.buy {
 
 .aiguille {
     height: 200px;
-    width: 20px;
+    width: 25px;
     background-image: url("../images/aiguille.png");
     background-repeat: no-repeat;
     background-size: cover;
-    position: absolute;
-    left: 45%;
-    top: 0;
-    transform-origin: bottom;
-    transform: translate(-50%) rotate(90deg);;
+    transform-origin: left bottom;
     z-index: 99;
-}
-
-.sky {
     position: absolute;
-    top: 1056px;
-    left: 0;
-    width: 100%;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%) rotate(90deg);;
 }
 
 #cat-with-a-hat img {
@@ -268,14 +277,98 @@ a.buy {
     height: 80px;
 }
 
+#cat-with-a-hat img.active {
+    width: 150px;
+    height: 80px;
+}
+
 .tap {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
     background-color: #ffd000;
     height: 45px;
     width: 250px;
     font-size: 48px;
     border-radius: 25px;
     cursor: pointer;
+    color: #fff;
+    font-family: "Silver";
+    border: none;
+    transition: .3s;
+    outline: none;
+    margin: 50px 0;
+}
+
+.tap:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+.alert {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30%;
+    height: 50%;
+    background: #fff;
+    color: #000;
+
+    z-index: 9999;
+    visibility: hidden;
+}
+
+.alert.toggled {
+    visibility: visible;
+}
+
+.alert p {
+    position: absolute;
+    top: 80%;
+    font-size: 32px;
+    width: 100%;
+    text-align: center;
+}
+
+.images {
+    position: absolute;
+    left: 40%;
+    top: 20%;
+}
+
+.overlay.active {
+    position: fixed;
+    z-index: 9998;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+}
+
+.list {
+    width: 20%;
+    height: 400px;
+    margin: 35px;
+    background-color: #fff;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.list li {
+    color: #000;
+    list-style-type: none;
+}
+
+.list1 h3 {
+    color: #2ecc71;
+}
+
+.list2 h3 {
+    color: #e74c3c;
 }

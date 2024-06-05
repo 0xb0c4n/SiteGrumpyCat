@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form to CSV</title>
+</head>
+<body>
+    <form id="form">
+        <label for="rotation">Rotation</label><br>
+        <input type="text" name="rotation" placeholder="rotation de l'aiguille"><br>
+        <input type="text" name="elem1" placeholder="elem1"><br>
+        <input type="text" name="elem2" placeholder="elem2"><br>
+        <input type="text" name="elem3" placeholder="elem3"><br>
+        <input type="text" name="elem4" placeholder="elem4"><br>
+        <input type="text" name="elem5" placeholder="elem5"><br>
+        <input type="text" name="elem6" placeholder="elem6"><br>
+        <input type="text" name="elem7" placeholder="elem7"><br>
+        <input type="text" name="elem8" placeholder="elem8"><br>
+        <input type="submit" value="Envoyer"><br>
+    </form>
+    
+    <script>
+        document.getElementById('form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const data = {
+                rotation: formData.get('rotation'),
+                elem1: formData.get('elem1'),
+                elem2: formData.get('elem2'),
+                elem3: formData.get('elem3'),
+                elem4: formData.get('elem4'),
+                elem5: formData.get('elem5'),
+                elem6: formData.get('elem6'),
+                elem7: formData.get('elem7'),
+                elem8: formData.get('elem8'),
+            };
+
+            try {
+                const response = await fetch('http://localhost:3000/add-data', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    alert('Data written to CSV successfully');
+                } else {
+                    const errorText = await response.text();
+                    alert('Error writing to CSV: ' + errorText);
+                }
+            } catch (error) {
+                console.error('Fetch error:', error);
+                alert('Fetch error: ' + error.message);
+            }
+        });
+    </script>
+</body>
+</html>

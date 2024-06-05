@@ -1,3 +1,20 @@
+const chapeaux = ["Chapeau1", "Chapeau2", "Chapeau3", "Chapeau4", "Chapeau5", "Chapeau6", "Chapeau7", "Chapeau8"];
+const chapeaux_dict = {
+    "Chapeau1": "Christmas",
+    "Chapeau2": "Irish",
+    "Chapeau3": "Indiana",
+    "Chapeau4": "Holiday",
+    "Chapeau5": "Gang",
+    "Chapeau6": "Magician",
+    "Chapeau7": "Wizard",
+    "Chapeau8": "Pirate"
+}
+const chestButton = document.getElementById('chest');
+
+function getRandomElement(array) {
+    return array[Math.floor(Math.random() * array.length)];
+}
+
 function setupInfiniteSlider() {
     const slideTrack = document.querySelector('.slide-track');
     const slides = Array.from(slideTrack.children);
@@ -20,20 +37,12 @@ document.querySelectorAll('.percentage').forEach(function(element) {
     }
 });
 document.addEventListener('DOMContentLoaded', () => {
-    const chapeaux = ["Chapeau1", "Chapeau2", "Chapeau3", "Chapeau4", "Chapeau5", "Chapeau6"];
     const nuages = ["Nuage1", "Nuage2"];
     const usedCombinations = new Set();
     const container = document.getElementById('container');
     const maxCombinations = 3;
     const delay = 8000; // 5 second delay
     const speed = 2; // Speed of animation (pixels per frame)
-
-    /**
-     * Returns a random element from an array.
-     * @param {Array} array - The array to pick a random element from.
-     * @returns {*} A random element from the array.
-     */
-    const getRandomElement = (array) => array[Math.floor(Math.random() * array.length)];
 
     /**
      * Generates a unique combination of a chapeau and a nuage.
@@ -55,13 +64,13 @@ document.addEventListener('DOMContentLoaded', () => {
      * @param {string} combination - The combination text to display.
      * @returns {HTMLElement} The newly created combination element.
      */
-    const createCombinationElement = (combination) => {
+    const createCombinationElement = (combination, index) => {
         const element = document.createElement('div');
         element.className = 'combination';
         element.textContent = combination;
+        element.id = "container-" + index
         element.style.right = '0px';
         element.style.top = "" + Math.floor(Math.random() * 500) + "px"
-        console.log(combination.split(" - ")[1])
         element.innerHTML = "<img class='chapeau' src='./assets/images/chapeaux/" + combination.split(" - ")[0] + ".png' /><img class='chat' src='./assets/images/cat-cl.png' width='80' height='80'/><img class='cloud' src='./assets/images/clouds/" + combination.split(" - ")[1] + ".png' />";
         return element;
     };
@@ -96,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const lastElement = container.lastElementChild;
                 if (!lastElement || parseFloat(lastElement.style.right) > 250) {
                     const combination = generateUniqueCombination();
-                    const element = createCombinationElement(combination);
+                    const element = createCombinationElement(combination, index);
                     container.appendChild(element);
 
                     // Animate the element after it is added
@@ -123,3 +132,48 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setupInfiniteSlider()
 });
+
+let i = 0;
+document.getElementById('tap').addEventListener('click', () => {
+    const frames = [];
+    const frameCount = 14;  // Nombre de frames dans votre animation
+    const image = document.getElementById('chest')
+    let currentFrame = 0;
+    let animationInterval;
+    
+    // Charger les images
+    for (let i = 0; i < frameCount; i++) {
+        img = `assets/images/chest/frame_0${i}_delay-0.1s.gif`;  // Assurez-vous que les images sont nommées correctement
+        frames.push(img);
+    }
+
+
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+    
+    async function drawFrame() {
+        for (let j = 0; j < frameCount; j++) {
+            image.src = frames[j]
+            image.classList.add("active")
+            await sleep(100)
+        }
+    }
+
+    
+    
+   drawFrame().then(() => {
+    chosen_hat = getRandomElement(chapeaux)
+    document.querySelector('.overlay').classList.toggle('active')
+    document.querySelector('.alert').classList.toggle('toggled')
+    document.getElementById('chapeau-modif').src = 'assets/images/chapeaux/' + chosen_hat + '.png'
+    document.getElementById('p-chapeau').innerHTML = 'You won the ' + chapeaux_dict[chosen_hat] + ' hat'
+   })
+})
+
+document.getElementById('close').addEventListener('click', () => {
+    document.querySelector('.overlay').classList.toggle('active')
+    document.querySelector('.alert').classList.toggle('toggled')
+    chest.src = './assets/images/chest_idle.png'
+    chest.classList.remove('active')
+})
