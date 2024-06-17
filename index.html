@@ -33,11 +33,16 @@
             </div>
             <header>
                 <nav>
-                    <ul>
+                    <div class="menu-toggle" id="mobile-menu">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </div>        
+                    <ul class="nav-list">
                         <li><a href="#">BUY WITH US</a></li>
                         <li><a href="#cat-with-a-hat">CAT WITH HAT</a></li>
-                        <li><a href="#barometre">BAROMETER</a></li>
-                        <li><a href="#">TOKENOMICS</a></li>
+                        <li><a href="#barometre">GRUMPMETER</a></li>
+                        <li><a href="#tokenomics">TOKENOMICS</a></li>
                     </ul>
                 </nav>
             </header>
@@ -49,23 +54,50 @@
             <p style="margin-bottom: 25px;">Contract : 0x0000000000000000000000000000000</p>
             <p>
                 <a href="https://x.com/grumpycoincat" target="_blank"><img src="./assets/images/x.png" alt="" srcset=""></a>
-                <a href="#" target="_blank"><img src="./assets/images/telegram.png" alt="" srcset=""></a>
+                <a href="#" target="_blank"><img src="./assets/images/telegram.png" alt="" srcset=""></a><br>
+                <a href="
+                https://grumpycoincat.gitbook.io/untitled/
+                ">Whitepaper</a>
             </p>
         </article>
     </div>
 
     <div class="atmosphere" id="container">
     </div>
-
     <div id="cat-with-a-hat">
         <h1>Cat with a hat</h1>
         <img id="chest" src="./assets/images/chest_idle.png" alt="" srcset="">
         <button class="tap" id="tap">Tap to get hat</button>
     </div>
+    <div class="about">
+        <h1>About $GRUMP</h1>
+        <p>GrumpyCoinCat (GRUMP) is the world’s first cryptocurrency driven by a perpetually grumpy cat who secretly plots world domination. Born from the depths of meme culture, GrumpyCoinCat combines cutting-edge blockchain technology with the grumpiest, most cunning feline on the internet, ensuring your investments always have a hint of disdain and a dash of domination.</p>
+        <h2>Mission</h2>
+        <p>Our mission? To spread grumpiness and feline supremacy far and wide while creating a thriving, slightly disgruntled community of meme and crypto enthusiasts. We aim to provide real value through our token, all while maintaining a grumpy outlook and secretly planning to rule the world. Because who said you have to be happy to be powerful?</p>
+        <h2>Vision</h2>
+        <p>GrumpyCoinCat envisions a future where being grumpy is the norm, and cats reign supreme over the meme coin universe. We strive to build an ecosystem where our users can revel in their grumpiness while benefiting from our relentless pursuit of global feline domination through blockchain technology. Join us in our quest for world domination—because the world could always use a bit more grump and a lot more cat control.</p>
+    </div>
+    <div id="tokenomics">
+        <h1>Tokenomics</h1>
+        <p>$GRUMP is designed to support sustainable growth and community engagement. Here's a detailed breakdown of the house rule at $GRUMP : </p>
+        <div class="flex">
+            <div class="card">
+                <img src="./assets/images/supply.jpg" alt="">
+                <h2>Supply</h2>
+                <p>$GRUMP has a supply of 99 500 000 tokens. From this, the max number of tokens for a single wallet is established as 1% of the total supply, which represents 995 000 tokens.</p>
+            </div>
+            <div class="card">
+                <img src="./assets/images/fees.jpg" alt="" srcset="">
+                <h2>Fees</h2>
+                <p>According to the day, the fees can vary from 0 to 10% on the worst days. Those fees are then equally distributed between the team and a part of these fees are invested in marketing.</p>
+            </div>
+        </div>
+    </div>
     <div class="sky">
         <div class="barometre" id="barometre">
 
-            <h1>Barometer</h1>
+            <h1>Grumpmeter</h1>
+            <p>If I get up on the wrong side of the bed, you'll have a 10% fee. But if I'm in a better mood, it will be less... But don't dream too much</p>
             <div class="action">
                 <div class="list list1" >
                     <h3>Advantages of the day</h3>
@@ -91,7 +123,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             try {
-                const response = fetch('http://localhost:3000/read-data')
+                const response = fetch('http://109.123.248.250:30440/read-data')
                                 .then(response=>response.json())
                                 .then(data=>{ 
                                     document.getElementById('aiguille').style.transform = 'rotate('+data[0]['ROTATION']+'deg)';

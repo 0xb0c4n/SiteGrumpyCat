@@ -36,6 +36,12 @@ document.querySelectorAll('.percentage').forEach(function(element) {
         element.classList.add('positive');
     }
 });
+
+document.getElementById("mobile-menu").addEventListener("click", function() {
+    let navList = document.querySelector(".nav-list");
+    navList.classList.toggle("active");
+});
+
 document.addEventListener('DOMContentLoaded', () => {
     const nuages = ["Nuage1", "Nuage2"];
     const usedCombinations = new Set();

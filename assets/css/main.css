@@ -14,6 +14,20 @@ body {
     background: #8639b9;
 }
 
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 8px;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 4px 0;
+}
+
 header {
     width: 100%;
     background: #000;
@@ -55,6 +69,26 @@ header nav ul li a::after {
 header nav ul li a:hover::after {
     transform: scaleX(1);
     transform-origin: bottom left;
+}
+
+.flex {
+    display: flex;
+    width: 90%;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.card {
+    background-color: #fff;
+    width: 33%;
+    color: #646464;
+    margin: 15px;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.card img {
+    width: 50%
 }
 
 @keyframes scroll {
@@ -127,6 +161,11 @@ header nav ul li a:hover::after {
     width: 100%;
     height: 1056px;
     background: url("../images/thermosphere.jpg");
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
 }
 
 article {
@@ -205,6 +244,17 @@ a.buy {
     top: 100px;
 }
 
+.about {
+    text-align: center;
+    width: 50%;
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+
+.about h2 {
+    margin-top: 15px;
+}
+
 #cat-with-a-hat {
     background: none;
     width: 100%;
@@ -213,6 +263,17 @@ a.buy {
     flex-direction: column;
     align-items: center;
     justify-content: center space-between;
+}
+
+#tokenomics {
+    background: none;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center space-between;
+    margin: 50px 0;
 }
 
 .sky {
@@ -371,4 +432,79 @@ a.buy {
 
 .list2 h3 {
     color: #e74c3c;
+}
+
+@media screen and (max-width: 900px) {
+
+    .barometre {
+        text-align: center;
+    }
+    .action {
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* Deux colonnes de largeur égale */
+        grid-template-rows: auto auto; /* Deux rangées automatiques en hauteur */
+    }
+    
+    .image {
+        grid-row: 1;
+        grid-column: 1 / span 2; /* Fait en sorte que .image prenne toute la largeur de la grille */
+        text-align: center; /* Centrer le contenu de l'image */
+        margin: 0 auto;
+    }
+    
+    .cadran {
+        display: inline-block; /* Pour centrer le contenu de .image */
+    }
+    
+    .list1, .list2 {
+        grid-row: 2;
+        width: 80%; /* Assurer que les listes prennent toute la largeur disponible */
+    }
+    
+    .list1 {
+        margin-left: 0;
+        grid-column: 1; /* Première colonne */
+    }
+    
+    .list2 {
+        grid-column: 2; /* Deuxième colonne */
+    }
+    
+    /* Optionnel : ajuster les styles des listes et des éléments de la liste */
+    .list ul {
+        list-style-type: none; /* Retirer les puces des listes */
+        padding: 0;
+    }
+    
+    .list ul li {
+        padding: 5px 0; /* Espacement des éléments de la liste */
+    }
+    
+    .nav-list {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        z-index: 9999999;
+    }
+    .nav-list li {
+        text-align: center;
+        color: #fff;
+
+    }
+    .menu-toggle {
+        display: flex;
+    }
+
+    .images {
+        left: 30%;
+    }
+
+    .alert {
+        width: 50%;
+    }
+}
+
+.nav-list.active {
+    display: flex;
 }
